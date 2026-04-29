@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #fafafa;
+  --bg-secondary: #f1f1f3;
+  --fg: #0a0a0f;
+  --fg-secondary: #4a4a5a;
+  --fg-tertiary: #9090a0;
+  --border: #e0e0e8;
+  --accent: #6366f1;
+  --accent-light: #a5b4fc;
+  --accent-glow: rgba(99, 102, 241, 0.3);
+  --card: #ffffff;
+  --card-border: #e0e0e8;
+  --glass: rgba(255,255,255,0.7);
+  --glass-border: rgba(255,255,255,0.5);
+}
+
+.dark {
+  --bg: #06060c;
+  --bg-secondary: #0f0f1a;
+  --fg: #f0f0ff;
+  --fg-secondary: #8888aa;
+  --fg-tertiary: #444466;
+  --border: #1a1a2e;
+  --accent: #818cf8;
+  --accent-light: #6366f1;
+  --accent-glow: rgba(129, 140, 248, 0.25);
+  --card: #0d0d1a;
+  --card-border: #1a1a2e;
+  --glass: rgba(13,13,26,0.8);
+  --glass-border: rgba(129,140,248,0.15);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+}
+
+@media (hover: none) {
+  body { cursor: auto; }
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+code, .font-mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Neon glow utilities */
+.glow-accent {
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+.glow-text {
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Magnetic button base */
+.btn-magnetic {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-magnetic:hover {
+  box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+/* Animated gradient border */
+@keyframes border-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, var(--accent), #a855f7, var(--accent));
+  background-size: 200% 200%;
+  animation: border-rotate 4s ease infinite;
+  padding: 1px;
+  border-radius: 1rem;
+}
