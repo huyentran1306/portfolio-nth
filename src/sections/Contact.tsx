@@ -1,74 +1,94 @@
-import { motion } from 'framer-motion'
-import { GitFork, ExternalLink, Mail } from 'lucide-react'
+import { motion, type Variants } from 'framer-motion'
+import { GitFork, ExternalLink, Mail, ArrowUpRight } from 'lucide-react'
+import { SectionHeader } from '@/components/SectionWrapper'
+
+const links = [
+  {
+    icon: GitFork,
+    label: 'GitHub',
+    href: 'https://github.com/',
+    sub: 'github.com/huyentran',
+    color: 'from-gray-500 to-gray-700',
+  },
+  {
+    icon: ExternalLink,
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/',
+    sub: 'linkedin.com/in/huyentran',
+    color: 'from-blue-500 to-blue-700',
+  },
+  {
+    icon: Mail,
+    label: 'Email',
+    href: 'mailto:huyen.tran@example.com',
+    sub: 'huyen.tran@example.com',
+    color: 'from-[var(--accent)] to-[var(--accent-2)]',
+  },
+]
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+}
+const item: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0 },
+}
 
 export function Contact() {
-  const links = [
-    {
-      icon: GitFork,
-      label: 'GitHub',
-      href: 'https://github.com/',
-      sub: 'github.com/huyentran',
-    },
-    {
-      icon: ExternalLink,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/',
-      sub: 'linkedin.com/in/huyentran',
-    },
-    {
-      icon: Mail,
-      label: 'Email',
-      href: 'mailto:huyen.tran@example.com',
-      sub: 'huyen.tran@example.com',
-    },
-  ]
-
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-3xl mx-auto text-center">
+    <section id="contact" className="py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+      {/* Orb */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(60px)' }}
+      />
+
+      <div className="max-w-3xl mx-auto text-center relative">
+        <SectionHeader
+          pill="Contact"
+          title={<>Let&apos;s build something<br /><span className="gradient-text">impactful together.</span></>}
+          subtitle="If you value how I think about systems — the trade-offs, the engineering depth, the leadership approach — I'd love to connect."
+        />
+
+        {/* Links */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={container}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
         >
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-6">
-            Contact
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--fg)] tracking-tight mb-6">
-            Let's build something
-            <br />
-            <span className="text-[var(--accent)]">impactful together.</span>
-          </h2>
-          <p className="text-lg text-[var(--fg-secondary)] mb-12 max-w-xl mx-auto leading-relaxed">
-            If you value how I think about systems — the trade-offs, the engineering depth, the leadership approach —
-            I'd love to connect.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            {links.map(({ icon: Icon, label, href, sub }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-6 py-4 border border-[var(--border)] rounded-xl hover:border-[var(--accent)] hover:bg-[var(--accent)]/5 transition-all group"
-              >
-                <Icon size={20} className="text-[var(--fg-secondary)] group-hover:text-[var(--accent)] transition-colors" />
-                <div className="text-left">
-                  <div className="text-sm font-semibold text-[var(--fg)]">{label}</div>
-                  <div className="text-xs text-[var(--fg-tertiary)]">{sub}</div>
+          {links.map(({ icon: Icon, label, href, sub, color }) => (
+            <motion.a
+              key={label}
+              href={href}
+              variants={item}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -5, scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="glass-card flex items-center gap-4 px-6 py-5 group text-left flex-1 min-h-[64px]"
+            >
+              <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.15)] group-hover:scale-110 transition-transform`}>
+                <Icon size={16} className="text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-semibold text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors">
+                  {label}
                 </div>
-                <ExternalLink size={14} className="text-[var(--fg-tertiary)] ml-auto opacity-50" />
-              </a>
-            ))}
-          </div>
-
-          <div className="border-t border-[var(--border)] pt-12">
-            <p className="text-[var(--fg-tertiary)] text-sm">
-              © 2024 Nguyen Thi Huyen Tran · Tech Lead · FPT Software
-            </p>
-          </div>
+                <div className="text-xs text-[var(--fg-tertiary)] truncate">{sub}</div>
+              </div>
+              <ArrowUpRight size={14} className="text-[var(--fg-tertiary)] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+            </motion.a>
+          ))}
         </motion.div>
+
+        <div className="border-t border-[var(--border)] pt-10">
+          <p className="text-[var(--fg-tertiary)] text-sm">
+            © 2024 Nguyen Thi Huyen Tran &nbsp;·&nbsp; Tech Lead &nbsp;·&nbsp; FPT Software
+          </p>
+        </div>
       </div>
     </section>
   )
