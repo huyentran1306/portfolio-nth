@@ -75,6 +75,9 @@ function App() {
           <Hero />
 
           <Suspense fallback={<SectionSkeleton />}>
+            <Certifications />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
             <CareerTimeline />
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
@@ -85,9 +88,6 @@ function App() {
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <SkillTree />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton />}>
-            <Certifications />
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <ProblemSolutionLab />

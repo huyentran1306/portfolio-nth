@@ -7,9 +7,9 @@ import { BookOpen, Brain, FolderOpen, FlaskConical, Bot, Mail, Award } from 'luc
 
 const NAV_LINKS = [
   { href: '#story',          label: 'Career',       icon: BookOpen },
+  { href: '#certifications', label: 'Certs',        icon: Award },
   { href: '#think',          label: 'Think',        icon: Brain },
   { href: '#projects',       label: 'Projects',     icon: FolderOpen },
-  { href: '#certifications', label: 'Certs',        icon: Award },
   { href: '#lab',            label: 'Lab',          icon: FlaskConical },
   { href: '#ai',             label: 'AI & Lead',    icon: Bot },
   { href: '#contact',        label: 'Contact',      icon: Mail },
