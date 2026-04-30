@@ -79,7 +79,7 @@ function TimelineCard({ item, index }: { item: (typeof timelineData)[0]; index: 
 
 export function CareerTimeline() {
   return (
-    <section id="story" className="py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="story" className="py-16 md:py-20 px-6 relative overflow-hidden">
       {/* Subtle bg accent */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 70%)', filter: 'blur(60px)' }}

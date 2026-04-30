@@ -96,7 +96,7 @@ export function DecisionSimulator() {
   const handleNext = (i: number) => { setActiveScenario(i); setSelected(null); setRevealed(false) }
 
   return (
-    <section id="think" className="py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+    <section id="think" className="py-16 md:py-20 px-4 sm:px-6 relative overflow-hidden">
       {/* bg */}
       <div className="absolute inset-0 bg-[var(--bg-secondary)]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"

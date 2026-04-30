@@ -6,6 +6,7 @@ export function AIAndLeadership() {
   return (
     <>
       <SectionWrapper id="ai">
+        <div className="px-6 py-16 max-w-5xl mx-auto">
         <SectionHeader
           pill="🤖 AI Integration"
           title={<>I use AI as an <span className="gradient-text">engineering tool</span>, not a trend.</>}
@@ -50,9 +51,11 @@ export function AIAndLeadership() {
             </motion.div>
           ))}
         </div>
+        </div>
       </SectionWrapper>
 
       <SectionWrapper id="leadership" className="bg-[var(--bg-secondary)]">
+        <div className="px-6 py-16 max-w-5xl mx-auto">
         <SectionHeader
           pill="👥 Leadership"
           title={<>I lead by <span className="gradient-text">doing</span>, not directing.</>}
@@ -83,6 +86,7 @@ export function AIAndLeadership() {
               </ul>
             </motion.div>
           ))}
+        </div>
         </div>
       </SectionWrapper>
     </>

@@ -123,7 +123,7 @@ export function Certifications() {
 
   return (
     <SectionWrapper id="certifications">
-      <div className="max-w-5xl mx-auto px-6 py-24">
+        <div className="max-w-5xl mx-auto px-6 py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

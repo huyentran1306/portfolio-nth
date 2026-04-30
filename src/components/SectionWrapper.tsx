@@ -36,7 +36,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ pill, title, subtitle, centered = true }: SectionHeaderProps) {
   return (
-    <div className={cn('mb-16 md:mb-20', centered && 'text-center')}>
+    <div className={cn('mb-10 md:mb-14', centered && 'text-center')}>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export function SectionHeader({ pill, title, subtitle, centered = true }: Sectio
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.55, delay: 0.07 }}
-        className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--fg)] leading-[1.1] mb-5"
+        className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--fg)] leading-[1.1] mb-4"
       >
         {title}
       </motion.h2>

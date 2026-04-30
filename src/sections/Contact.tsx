@@ -37,7 +37,7 @@ const item: Variants = {
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden">
+    <section id="contact" className="py-16 md:py-20 px-4 sm:px-6 relative overflow-hidden">
       {/* Orb */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(60px)' }}
