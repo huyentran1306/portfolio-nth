@@ -4,19 +4,22 @@ import { Hero } from '@/sections/Hero'
 import { MetricsPanel } from '@/components/MetricsPanel'
 import { CustomCursor } from '@/components/CustomCursor'
 import { AIAssistant } from '@/components/AIAssistant'
-import { FailureOverlay } from '@/components/FailureOverlay'
+import FailureOverlay from '@/components/FailureOverlay'
 import { BootScreen } from '@/components/BootScreen'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import DebugConsole from '@/components/DebugConsole'
+import ChaosController from '@/components/ChaosController'
 import { useSystemStore } from '@/store/system'
 import { cn } from '@/lib/utils'
 
 // Lazy-load heavy sections
-const CareerTimeline    = lazy(() => import('@/sections/CareerTimeline').then(m => ({ default: m.CareerTimeline })))
-const DecisionSimulator = lazy(() => import('@/sections/DecisionSimulator').then(m => ({ default: m.DecisionSimulator })))
-const ProjectDeepDive   = lazy(() => import('@/sections/ProjectDeepDive').then(m => ({ default: m.ProjectDeepDive })))
+const CareerTimeline     = lazy(() => import('@/sections/CareerTimeline').then(m => ({ default: m.CareerTimeline })))
+const DecisionSimulator  = lazy(() => import('@/sections/DecisionSimulator').then(m => ({ default: m.DecisionSimulator })))
+const ProjectDeepDive    = lazy(() => import('@/sections/ProjectDeepDive').then(m => ({ default: m.ProjectDeepDive })))
 const ProblemSolutionLab = lazy(() => import('@/sections/ProblemSolutionLab').then(m => ({ default: m.ProblemSolutionLab })))
-const AIAndLeadership   = lazy(() => import('@/sections/AIAndLeadership').then(m => ({ default: m.AIAndLeadership })))
-const Contact           = lazy(() => import('@/sections/Contact').then(m => ({ default: m.Contact })))
+const AIAndLeadership    = lazy(() => import('@/sections/AIAndLeadership').then(m => ({ default: m.AIAndLeadership })))
+const SkillTree          = lazy(() => import('@/sections/SkillTree').then(m => ({ default: m.SkillTree })))
+const Contact            = lazy(() => import('@/sections/Contact').then(m => ({ default: m.Contact })))
 
 function SectionSkeleton() {
   return (
@@ -36,20 +39,20 @@ function App() {
   const [booted, setBooted] = useState(false)
   const handleBoot = useCallback(() => setBooted(true), [])
 
-  // Live metric fluctuation
+  // Live metric fluctuation (skip when chaos/failure is controlling metrics)
   useEffect(() => {
     const id = setInterval(() => {
-      useSystemStore.getState().setMetrics({
-        traffic: useSystemStore.getState().failureMode
-          ? 7000 + Math.round(Math.random() * 3000)
-          : 2200 + Math.round(Math.random() * 500),
-        latency: useSystemStore.getState().failureMode
-          ? 2800 + Math.round(Math.random() * 800)
-          : 130 + Math.round(Math.random() * 30),
+      const s = useSystemStore.getState()
+      if (s.chaosMode || s.failureMode || s.recoveryStage === 'recovering') return
+      s.setMetrics({
+        traffic: 2200 + Math.round(Math.random() * 500),
+        latency: 130 + Math.round(Math.random() * 30),
       })
     }, 2000)
     return () => clearInterval(id)
   }, [])
+
+  // system state reactive
 
   return (
     <>
@@ -65,8 +68,9 @@ function App() {
         <Navbar />
         <MetricsPanel />
         <FailureOverlay />
+        <ChaosController />
 
-        <main className="pb-20 md:pb-0">
+        <main className="pb-28 md:pb-0">
           <Hero />
 
           <Suspense fallback={<SectionSkeleton />}>
@@ -77,6 +81,9 @@ function App() {
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <ProjectDeepDive />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <SkillTree />
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <ProblemSolutionLab />
@@ -90,6 +97,7 @@ function App() {
         </main>
 
         <AIAssistant />
+        <DebugConsole />
       </div>
     </>
   )
