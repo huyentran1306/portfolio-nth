@@ -46,7 +46,7 @@ export function MetricsPanel() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.5 }}
       className={cn(
-        'fixed top-20 right-4 z-40 w-56 rounded-2xl border p-4 space-y-3 text-xs backdrop-blur-xl',
+        'fixed top-20 right-4 z-40 w-56 rounded-2xl border p-4 space-y-3 text-xs backdrop-blur-xl hidden sm:block',
         failureMode
           ? 'bg-red-950/80 border-red-500/40'
           : 'bg-[var(--card)]/80 border-[var(--card-border)]'

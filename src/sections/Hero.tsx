@@ -21,7 +21,7 @@ const item: Variants = {
 export function Hero() {
   return (
     <>
-      <section className="min-h-[100svh] flex flex-col items-center justify-center px-6 pt-20 pb-12 relative overflow-hidden">
+      <section className="min-h-[100svh] flex flex-col items-center justify-center px-4 sm:px-6 pt-16 sm:pt-20 pb-12 relative overflow-hidden">
 
         {/* ── Background layers ────────────────────────── */}
         {/* Grid */}
@@ -60,17 +60,18 @@ export function Hero() {
           className="relative z-10 max-w-4xl mx-auto text-center w-full"
         >
           {/* Pill badge */}
-          <motion.div variants={item} className="flex justify-center mb-8">
-            <span className="section-pill gap-1.5">
+          <motion.div variants={item} className="flex justify-center mb-6 sm:mb-8">
+            <span className="section-pill gap-1.5 text-xs sm:text-sm">
               <Sparkles size={11} />
-              Tech Lead · FPT Software · 8+ Years
+              <span className="hidden sm:inline">Tech Lead · FPT Software · 8+ Years</span>
+              <span className="sm:hidden">Tech Lead · 8+ Years</span>
             </span>
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={item}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.02] mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.02] mb-6 sm:mb-8"
           >
             <span className="text-[var(--fg)]">I design scalable</span>
             <br />
@@ -82,7 +83,7 @@ export function Hero() {
           {/* Sub */}
           <motion.p
             variants={item}
-            className="text-base sm:text-lg md:text-xl text-[var(--fg-secondary)] mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-[var(--fg-secondary)] mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             .NET · Rule Engine · Azure AKS · Microservices · Event-Driven Architecture
           </motion.p>
@@ -90,13 +91,13 @@ export function Hero() {
           {/* CTAs */}
           <motion.div
             variants={item}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-16 sm:mb-20"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center mb-12 sm:mb-16 lg:mb-20"
           >
-            <a href="#think" className="btn-primary w-full sm:w-auto justify-center">
+            <a href="#think" className="btn-primary w-full sm:w-auto justify-center text-sm sm:text-base">
               See how I think
               <ArrowDown size={16} />
             </a>
-            <a href="#projects" className="btn-secondary w-full sm:w-auto justify-center">
+            <a href="#projects" className="btn-secondary w-full sm:w-auto justify-center text-sm sm:text-base">
               View projects
             </a>
           </motion.div>
@@ -104,19 +105,19 @@ export function Hero() {
           {/* Stats */}
           <motion.div
             variants={item}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 max-w-2xl mx-auto"
           >
             {STATS.map((stat) => (
               <motion.div
                 key={stat.label}
                 whileHover={{ y: -4, scale: 1.04 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="glass-card p-4 md:p-5 text-center cursor-default"
+                className="glass-card p-3 sm:p-4 md:p-5 text-center cursor-default"
               >
-                <div className={`text-2xl md:text-3xl font-bold mb-1 ${stat.color}`}>
+                <div className={`text-xl sm:text-2xl md:text-3xl font-bold mb-1 ${stat.color}`}>
                   {stat.value}
                 </div>
-                <div className="text-[11px] text-[var(--fg-tertiary)] uppercase tracking-wider leading-tight">
+                <div className="text-[10px] sm:text-[11px] text-[var(--fg-tertiary)] uppercase tracking-wider leading-tight">
                   {stat.label}
                 </div>
               </motion.div>
