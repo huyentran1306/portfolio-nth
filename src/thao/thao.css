@@ -1,5 +1,6 @@
 /* Thao's ocean blue theme — scoped to .thao-theme */
 .thao-theme {
+  cursor: auto; /* override Huyen's cursor: none */
   --t-accent:       #38bdf8;
   --t-accent-2:     #0ea5e9;
   --t-accent-deep:  #0284c7;
@@ -20,6 +21,13 @@
   --t-border:       rgba(56,189,248,0.12);
   --t-shadow-glow:  0 0 30px rgba(56,189,248,0.2);
   --t-shadow-md:    0 4px 20px rgba(2,13,30,0.6);
+}
+
+.thao-theme *, .thao-theme *::before, .thao-theme *::after {
+  cursor: auto;
+}
+.thao-theme a, .thao-theme button, .thao-theme [role="button"], .thao-theme .cursor-pointer {
+  cursor: pointer;
 }
 
 .thao-theme .t-gradient-text {
