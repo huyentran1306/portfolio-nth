@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
+import { useThemeStore } from '@/store/theme'
 import '../thao/thao.css'
 import { ThaoNavbar } from './components/Navbar'
 import { ThaoHero } from './sections/Hero'
@@ -14,6 +15,16 @@ export function ThaoApp() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    // Force dark mode for Thao's portfolio (restores on unmount)
+    const wasDark = document.documentElement.classList.contains('dark')
+    document.documentElement.classList.add('dark')
+    useThemeStore.setState({ dark: true })
+    return () => {
+      if (!wasDark) {
+        document.documentElement.classList.remove('dark')
+        useThemeStore.setState({ dark: false })
+      }
+    }
   }, [])
 
   return (

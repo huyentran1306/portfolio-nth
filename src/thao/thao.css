@@ -29,29 +29,29 @@
 
 /* ── Light mode ── */
 html:not(.dark) .thao-theme {
-  --t-accent:       #0284c7;
-  --t-accent-2:     #0369a1;
-  --t-accent-deep:  #075985;
-  --t-accent-light: rgba(2,132,199,0.1);
-  --t-accent-glow:  rgba(2,132,199,0.25);
+  --t-accent:       #0369a1;
+  --t-accent-2:     #075985;
+  --t-accent-deep:  #0c4a6e;
+  --t-accent-light: rgba(3,105,161,0.08);
+  --t-accent-glow:  rgba(3,105,161,0.2);
 
-  --t-bg:           #f0f9ff;
-  --t-bg-secondary: #e0f2fe;
-  --t-bg-card:      rgba(255,255,255,0.85);
-  --t-card-border:  rgba(2,132,199,0.2);
-  --t-glass:        rgba(255,255,255,0.75);
-  --t-glass-border: rgba(2,132,199,0.25);
+  --t-bg:           #f8fafc;
+  --t-bg-secondary: #f1f5f9;
+  --t-bg-card:      rgba(255,255,255,0.95);
+  --t-card-border:  rgba(3,105,161,0.15);
+  --t-glass:        rgba(255,255,255,0.92);
+  --t-glass-border: rgba(3,105,161,0.18);
 
-  --t-fg:           #0c4a6e;
-  --t-fg-secondary: #0369a1;
-  --t-fg-tertiary:  #0284c7;
+  --t-fg:           #0f172a;
+  --t-fg-secondary: #334155;
+  --t-fg-tertiary:  #0369a1;
 
-  --t-border:       rgba(2,132,199,0.15);
-  --t-shadow-glow:  0 0 30px rgba(2,132,199,0.15);
-  --t-shadow-md:    0 4px 20px rgba(0,0,0,0.08);
+  --t-border:       rgba(3,105,161,0.12);
+  --t-shadow-glow:  0 0 30px rgba(3,105,161,0.12);
+  --t-shadow-md:    0 4px 20px rgba(0,0,0,0.06);
 
-  --t-navbar-bg:    rgba(240,249,255,0.9);
-  --t-navbar-border:rgba(2,132,199,0.2);
+  --t-navbar-bg:    rgba(248,250,252,0.92);
+  --t-navbar-border:rgba(3,105,161,0.15);
 }
 
 .thao-theme *, .thao-theme *::before, .thao-theme *::after {
