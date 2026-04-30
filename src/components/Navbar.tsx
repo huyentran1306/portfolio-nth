@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
-import { BookOpen, Brain, FolderOpen, FlaskConical, Bot, Mail } from 'lucide-react'
+import { BookOpen, Brain, FolderOpen, FlaskConical, Bot, Mail, Award } from 'lucide-react'
 
 const NAV_LINKS = [
-  { href: '#story',   label: 'Career',       icon: BookOpen },
-  { href: '#think',   label: 'Think',        icon: Brain },
-  { href: '#projects',label: 'Projects',     icon: FolderOpen },
-  { href: '#lab',     label: 'Lab',          icon: FlaskConical },
-  { href: '#ai',      label: 'AI & Lead',    icon: Bot },
-  { href: '#contact', label: 'Contact',      icon: Mail },
+  { href: '#story',          label: 'Career',       icon: BookOpen },
+  { href: '#think',          label: 'Think',        icon: Brain },
+  { href: '#projects',       label: 'Projects',     icon: FolderOpen },
+  { href: '#certifications', label: 'Certs',        icon: Award },
+  { href: '#lab',            label: 'Lab',          icon: FlaskConical },
+  { href: '#ai',             label: 'AI & Lead',    icon: Bot },
+  { href: '#contact',        label: 'Contact',      icon: Mail },
 ]
 
 export function Navbar() {

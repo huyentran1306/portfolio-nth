@@ -19,6 +19,7 @@ const ProjectDeepDive    = lazy(() => import('@/sections/ProjectDeepDive').then(
 const ProblemSolutionLab = lazy(() => import('@/sections/ProblemSolutionLab').then(m => ({ default: m.ProblemSolutionLab })))
 const AIAndLeadership    = lazy(() => import('@/sections/AIAndLeadership').then(m => ({ default: m.AIAndLeadership })))
 const SkillTree          = lazy(() => import('@/sections/SkillTree').then(m => ({ default: m.SkillTree })))
+const Certifications     = lazy(() => import('@/sections/Certifications').then(m => ({ default: m.Certifications })))
 const Contact            = lazy(() => import('@/sections/Contact').then(m => ({ default: m.Contact })))
 
 function SectionSkeleton() {
@@ -84,6 +85,9 @@ function App() {
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <SkillTree />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton />}>
+            <Certifications />
           </Suspense>
           <Suspense fallback={<SectionSkeleton />}>
             <ProblemSolutionLab />
