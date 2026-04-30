@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { ThemeToggle } from './ThemeToggle'
 import { cn } from '@/lib/utils'
 import { BookOpen, Brain, FolderOpen, FlaskConical, Bot, Mail } from 'lucide-react'
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => {
@@ -83,9 +85,23 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
+            <button
+              onClick={() => navigate('/')}
+              className="text-xs font-mono px-3 py-1.5 rounded-lg transition-all"
+              style={{ background: 'rgba(99,102,241,0.08)', color: '#818cf8', border: '1px solid rgba(99,102,241,0.2)' }}
+            >
+              ← Home
+            </button>
             <ThemeToggle />
           </div>
           <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={() => navigate('/')}
+              className="text-xs font-mono px-2 py-1 rounded-lg transition-all"
+              style={{ background: 'rgba(99,102,241,0.08)', color: '#818cf8', border: '1px solid rgba(99,102,241,0.2)' }}
+            >
+              ← Home
+            </button>
             <ThemeToggle />
           </div>
         </div>
