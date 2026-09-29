@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
-import { Award, ShieldCheck, BarChart3, Code2, Database, TrendingUp } from 'lucide-react'
+import { Award, ShieldCheck, BarChart3, Code2, Database, TrendingUp, Sparkles, Bot, Cpu } from 'lucide-react'
 import { SectionWrapper } from '@/components/SectionWrapper'
 
 interface Cert {
   id: string
   title: string
   issuer: string
-  category: 'agile' | 'scrum' | 'microsoft' | 'google'
+  category: 'ai' | 'scrum' | 'agile' | 'microsoft' | 'google'
   color: string
   icon: React.ReactNode
   badge: string
@@ -14,6 +14,45 @@ interface Cert {
 }
 
 const CERTS: Cert[] = [
+  // ── AI & Cloud Architecture ──────────────────────────────────────
+  {
+    id: 'ccaf',
+    title: 'Claude Certified Architect – Foundations',
+    issuer: 'Anthropic',
+    category: 'ai',
+    color: '#f97316',
+    icon: <Sparkles size={22} />,
+    badge: 'CCAF',
+  },
+  {
+    id: 'ai-200',
+    title: 'Microsoft Certified: Azure AI Cloud Developer Associate',
+    issuer: 'Microsoft',
+    category: 'ai',
+    color: '#3b82f6',
+    icon: <Cpu size={22} />,
+    badge: 'AI-200',
+  },
+  {
+    id: 'dp-800',
+    title: 'Microsoft Certified: SQL AI Developer Associate',
+    issuer: 'Microsoft',
+    category: 'ai',
+    color: '#06b6d4',
+    icon: <Database size={22} />,
+    badge: 'DP-800',
+  },
+  {
+    id: 'gh-300',
+    title: 'GitHub Certified: GitHub Copilot',
+    issuer: 'GitHub',
+    category: 'ai',
+    color: '#a855f7',
+    icon: <Bot size={22} />,
+    badge: 'GH-300',
+  },
+
+  // ── Scrum & Agile ────────────────────────────────────────────────
   {
     id: 'psm2',
     title: 'Professional Scrum Master™ II',
@@ -68,6 +107,8 @@ const CERTS: Cert[] = [
     icon: <TrendingUp size={22} />,
     badge: 'SAFe 6',
   },
+
+  // ── Microsoft Foundations ─────────────────────────────────────────
   {
     id: 'ms-csharp',
     title: 'Microsoft Specialist: Programming in C#',
@@ -86,6 +127,8 @@ const CERTS: Cert[] = [
     icon: <Database size={22} />,
     badge: 'MTA DB',
   },
+
+  // ── Google & Marketing ───────────────────────────────────────────
   {
     id: 'google-analytics',
     title: 'Google Analytics Certification',
@@ -107,13 +150,14 @@ const CERTS: Cert[] = [
 ]
 
 const CATEGORY_LABELS: Record<string, string> = {
+  ai: '🤖 AI & Cloud Architecture',
   scrum: '🏃 Scrum',
   agile: '⚡ Agile / SAFe',
   microsoft: '🪟 Microsoft',
   google: '🔍 Google',
 }
 
-const CATEGORY_ORDER = ['scrum', 'agile', 'microsoft', 'google']
+const CATEGORY_ORDER = ['ai', 'scrum', 'agile', 'microsoft', 'google']
 
 export function Certifications() {
   const grouped = CATEGORY_ORDER.reduce<Record<string, Cert[]>>((acc, cat) => {
@@ -137,13 +181,13 @@ export function Certifications() {
             Certifications
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: 'var(--fg)' }}>
-            10 Certifications.{' '}
+            {CERTS.length} Certifications.{' '}
             <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
               Zero shortcuts.
             </span>
           </h2>
           <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--fg-secondary)' }}>
-            Spanning Agile frameworks, cloud platforms, and software engineering fundamentals.
+            Spanning AI engineering, Agile frameworks, cloud platforms, and software architecture.
           </p>
         </motion.div>
 
@@ -162,12 +206,12 @@ export function Certifications() {
                 <span className="flex-1 h-px" style={{ background: 'var(--border)' }} />
                 <span className="text-xs px-2 py-0.5 rounded-full"
                   style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }}>
-                  {grouped[cat].length}
+                  {grouped[cat]?.length ?? 0}
                 </span>
               </h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {grouped[cat].map((cert, i) => (
+                {grouped[cat]?.map((cert, i) => (
                   <motion.div
                     key={cert.id}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -230,13 +274,14 @@ export function Certifications() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
         >
           {[
-            { label: 'Total Certs', value: '10', color: '#6366f1' },
-            { label: 'Scrum / Agile', value: '6',  color: '#a855f7' },
-            { label: 'Microsoft', value: '2',  color: '#0ea5e9' },
-            { label: 'Google', value: '2',  color: '#34d399' },
+            { label: 'Total Certs', value: String(CERTS.length), color: '#6366f1' },
+            { label: 'AI & Architecture', value: String(grouped['ai']?.length ?? 0), color: '#f97316' },
+            { label: 'Scrum & Agile', value: String((grouped['scrum']?.length ?? 0) + (grouped['agile']?.length ?? 0)), color: '#a855f7' },
+            { label: 'Microsoft', value: String(grouped['microsoft']?.length ?? 0), color: '#0ea5e9' },
+            { label: 'Google', value: String(grouped['google']?.length ?? 0), color: '#34d399' },
           ].map(stat => (
             <div key={stat.label} className="text-center p-4 rounded-2xl"
               style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)' }}>
